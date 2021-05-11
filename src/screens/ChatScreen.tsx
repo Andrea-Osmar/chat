@@ -6,13 +6,17 @@ import {
 	TouchableOpacity,
 	SafeAreaView,
 	KeyboardAvoidingView,
+	Keyboard,
 	Platform,
 	TextInput,
+	TouchableWithoutFeedback,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Avatar } from 'react-native-elements';
 import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
+import { db, auth } from '../../firebase';
+import firebase from 'firebase/app';
 
 interface Chat {
 	navigation: any;
@@ -50,7 +54,18 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 		});
 	}, [navigation]);
 
-	const sendMessage = () => {};
+	const sendMessage = () => {
+		Keyboard.dismiss();
+
+		db.collection('chats').doc(route.params.id).collection('messages').add({
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+			massage: input,
+			displayName: auth.currentUser.displayName,
+			email: auth.currentUser.email,
+			photoURL: auth.currentUser.photoURL,
+		});
+		setInput('');
+	};
 
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -59,21 +74,23 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 				style={styles.container}
 				keyboardVerticalOffset={90}>
-				<>
-					<ScrollView>{/*Chat here*/}</ScrollView>
-					<View style={styles.footer}>
-						<TextInput
-							value={input}
-							onChangeText={(text) => setInput(text)}
-							placeholder='Message'
-							style={styles.textInput}
-						/>
-
-						<TouchableOpacity onPress={sendMessage}>
-							<Ionicons name='send' size={24} color='#2c6bed' />
-						</TouchableOpacity>
-					</View>
-				</>
+				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+					<>
+						<ScrollView>{/*Chat here*/}</ScrollView>
+						<View style={styles.footer}>
+							<TextInput
+								value={input}
+								onChangeText={(text) => setInput(text)}
+								onSubmitEditing={sendMessage}
+								placeholder='Message'
+								style={styles.textInput}
+							/>
+							<TouchableOpacity onPress={sendMessage}>
+								<Ionicons name='send' size={24} color='#2c6bed' />
+							</TouchableOpacity>
+						</View>
+					</>
+				</TouchableWithoutFeedback>
 			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);
@@ -98,5 +115,3 @@ const styles = StyleSheet.create({
 		borderRadius: 30,
 	},
 });
-
-/*<Text>{route.params.chatName}</Text>*/

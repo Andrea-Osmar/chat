@@ -49,7 +49,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 			headerTintColor: '#000',
 
 			headerLeft: () => (
-				<View style={{ margin: 20, marginBottom: 30 }}>
+				<View style={{ margin: 20 }}>
 					<TouchableOpacity onPress={signOutUser}>
 						<Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
 						<Text>{auth.currentUser?.displayName}</Text>

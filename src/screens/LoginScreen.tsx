@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 
 export const LoginScreen = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
+	const signIn = () => {};
+
 	return (
 		<>
-			<View>
+			<KeyboardAvoidingView behavior='padding' style={styles.container}>
 				<StatusBar style='light' />
 				<Image
 					source={{
@@ -17,30 +19,36 @@ export const LoginScreen = () => {
 					}}
 					style={{ width: 200, height: 200, marginBottom: 20 }}
 				/>
-			</View>
-			<View style={styles.inputContainer}>
-				<Input
-					placeholder='Email'
-					autoFocus
-					type='email'
-					value={email}
-					onChangeText={(text) => setEmail(text)}
-				/>
-				<Input
-					placeholder='Password'
-					secureTextEntry
-					type='password'
-					value={password}
-					onChangeText={(text) => setPassword(text)}
-				/>
-				<Button containerStyle={styles.button} title='Login' />
+				<View style={styles.inputContainer}>
+					<Input
+						placeholder='Email'
+						autoFocus
+						type='email'
+						value={email}
+						onChangeText={(text) => setEmail(text)}
+					/>
+					<Input
+						placeholder='Password'
+						secureTextEntry
+						type='password'
+						value={password}
+						onChangeText={(text) => setPassword(text)}
+					/>
+				</View>
+				<Button containerStyle={styles.button} onPress={signIn} title='Login' />
 				<Button containerStyle={styles.button} type='outline' title='Register' />
-			</View>
+			</KeyboardAvoidingView>
 		</>
 	);
 };
 
 const styles = StyleSheet.create({
-	inputContainer: {},
-	button: {},
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: 10,
+	},
+	inputContainer: { width: 300 },
+	button: { width: 200, marginTop: 10 },
 });

@@ -2,7 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 
-export const CustomListItem = () => {
+interface Custom {
+	id: any;
+	chatName: any;
+	enterChat: any;
+}
+
+export const CustomListItem: React.FC<Custom> = ({
+	id,
+	chatName,
+	enterChat,
+}) => {
 	return (
 		<ListItem>
 			<Avatar

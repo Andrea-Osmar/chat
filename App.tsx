@@ -19,7 +19,9 @@ const Stack = createStackNavigator();
 export default function App() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator screenOptions={globalScreenOptions}>
+			<Stack.Navigator
+				initialRouteName='Home' // Forcing to Homescreen
+				screenOptions={globalScreenOptions}>
 				<Stack.Screen
 					options={{ title: 'Sign Up for Waves Chat ' }}
 					name='Login'

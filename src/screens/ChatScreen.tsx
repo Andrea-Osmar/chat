@@ -25,6 +25,7 @@ interface Chat {
 
 export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 	const [input, setInput] = useState('');
+	const [messages, setMessages] = useState([]);
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -67,6 +68,23 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 		setInput('');
 	};
 
+	useLayoutEffect(() => {
+		const unsubscribe = db
+			.collection('chats')
+			.doc(route.params.id)
+			.collection('messages')
+			.orderBy('timestamp', 'asc')
+			.onSnapshot((snapshot) =>
+				setMessages(
+					snapshot.docs.map((doc) => ({
+						id: doc.id,
+						data: doc.data(),
+					}))
+				)
+			);
+		return unsubscribe;
+	}, [route]);
+
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 			<StatusBar style='light' />
@@ -76,7 +94,21 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 				keyboardVerticalOffset={90}>
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 					<>
-						<ScrollView>{/*Chat here*/}</ScrollView>
+						<ScrollView>
+							{messages.map(({ id, data }) =>
+								data.email === auth.currentUser.email ? (
+									<View key={id} style={styles.reciever}>
+										<Avatar />
+										<Text style={styles.receiverText}>{data.message}</Text>
+									</View>
+								) : (
+									<View key={id} style={styles.sender}>
+										<Text style={styles.senderText}>{data.message}</Text>
+										<Text style={styles.senderText}>{data.displayName}</Text>
+									</View>
+								)
+							)}
+						</ScrollView>
 						<View style={styles.footer}>
 							<TextInput
 								value={input}
@@ -113,5 +145,24 @@ const styles = StyleSheet.create({
 		padding: 10,
 		color: 'grey',
 		borderRadius: 30,
+	},
+	reciever: {
+		padding: 15,
+		backgroundColor: '#ECECEC',
+		alignSelf: 'flex-end',
+		borderRadius: 20,
+		marginRight: 15,
+		marginBottom: 20,
+		maxWidth: '80%',
+		position: 'relative',
+	},
+	sender: {
+		padding: 15,
+		backgroundColor: '#2b68e6',
+		alignSelf: 'flex-start',
+		borderRadius: 20,
+		margin: 15,
+		maxWidth: '80%',
+		position: 'relative',
 	},
 });

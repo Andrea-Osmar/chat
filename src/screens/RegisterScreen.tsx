@@ -22,7 +22,7 @@ export const RegisterScreen: React.FC<Register> = ({ navigation }) => {
 
 	const register = () => {
 		auth
-			.createUserWtithEmaiAndPassword(email, password)
+			.createUserWithEmailAndPassword(email, password)
 			.then((authUser) => {
 				authUser.user.updateProfile({
 					displayName: displayName,

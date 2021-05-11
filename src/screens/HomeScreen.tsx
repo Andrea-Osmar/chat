@@ -1,12 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import {
+	View,
+	Text,
+	SafeAreaView,
+	StyleSheet,
+	ScrollView,
+	TouchableOpacity,
+} from 'react-native';
+
+import { CustomListItem } from '../components/CustomListItem';
 
 export const HomeScreen = () => {
 	return (
-		<View>
-			<Text>Home Screen</Text>
-		</View>
+		<SafeAreaView>
+			<ScrollView style={styles.container}>
+				<CustomListItem />
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {},
+});

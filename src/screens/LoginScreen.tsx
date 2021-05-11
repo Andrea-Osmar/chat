@@ -15,6 +15,7 @@ export const LoginScreen: React.FC<Login> = ({ navigation }) => {
 	useEffect(() => {
 		// Does not add to the stack - replaces to Home screen
 		const unsubscribe = auth.onAuthStateChanged((authUser) => {
+			console.log('authUser', authUser);
 			if (authUser) {
 				navigation.replace('Home');
 			}
@@ -22,7 +23,11 @@ export const LoginScreen: React.FC<Login> = ({ navigation }) => {
 		return unsubscribe;
 	}, []);
 
-	const signIn = () => {};
+	const signIn = () => {
+		auth
+			.signInWithEmailAndPassword(email, password)
+			.catch((error) => alert(error));
+	};
 
 	return (
 		<>

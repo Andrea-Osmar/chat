@@ -15,6 +15,10 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 interface Home {
 	navigation: any;
 }
+interface enterChat {
+	id: any;
+	chatName: any;
+}
 
 export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 	const [chats, setChats] = useState([]);
@@ -66,11 +70,23 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 		});
 	}, [navigation]);
 
+	const enterChat: React.FC<enterChat> = (id, chatName) => {
+		navigation.navigate('Chat', {
+			id,
+			chatName,
+		});
+	};
+
 	return (
 		<SafeAreaView>
 			<ScrollView style={styles.container}>
 				{chats.map(({ id, data: { chatName } }) => (
-					<CustomListItem key={id} id={id} chatName={chatName} />
+					<CustomListItem
+						key={id}
+						id={id}
+						chatName={chatName}
+						enterChat={enterChat}
+					/>
 				))}
 			</ScrollView>
 		</SafeAreaView>

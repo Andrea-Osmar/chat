@@ -5,11 +5,16 @@ import { ListItem, Avatar } from 'react-native-elements';
 interface Custom {
 	id: any;
 	chatName: any;
+	enterChat: any;
 }
 
-export const CustomListItem: React.FC<Custom> = ({ id, chatName }) => {
+export const CustomListItem: React.FC<Custom> = ({
+	id,
+	chatName,
+	enterChat,
+}) => {
 	return (
-		<ListItem key={id} bottomDivider>
+		<ListItem key={id} onPress={() => enterChat(id, chatName)} bottomDivider>
 			<Avatar
 				rounded
 				source={{

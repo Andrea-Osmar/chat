@@ -94,24 +94,42 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 				keyboardVerticalOffset={90}>
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 					<>
-						<ScrollView>
+						<ScrollView contentContainerStyle={{ paddingTop: 15 }}>
 							{messages.map(({ id, data }) =>
 								data.email === auth.currentUser.email ? (
 									<View key={id} style={styles.reciever}>
 										<Avatar
 											rounded
-											size={25}
+											size={30}
 											position='absolute'
 											bottom={-15}
 											right={-5}
 											source={{
 												uri: data.photoURL,
 											}}
+											//Web
+											containerStyle={{ position: 'absolute', bottom: -15, right: -5 }}
 										/>
 										<Text style={styles.recieverText}> {data.message} </Text>
 									</View>
 								) : (
 									<View key={id} style={styles.sender}>
+										<Avatar
+											rounded
+											position='absolute'
+											size={30}
+											bottom={-10}
+											left={-5}
+											source={{
+												uri: data.photoURL,
+											}}
+											// For Web
+											containerStyle={{
+												position: 'absolute',
+												left: -5,
+												bottom: -10,
+											}}
+										/>
 										<Text style={styles.senderText}> {data.message} </Text>
 										<Text style={styles.senderText}> {data.displayName} </Text>
 									</View>

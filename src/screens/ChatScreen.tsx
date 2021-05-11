@@ -53,14 +53,14 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 				</TouchableOpacity>
 			),
 		});
-	}, [navigation]);
+	}, [navigation, messages]);
 
 	const sendMessage = () => {
 		Keyboard.dismiss();
 
 		db.collection('chats').doc(route.params.id).collection('messages').add({
 			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-			massage: input,
+			message: input,
 			displayName: auth.currentUser.displayName,
 			email: auth.currentUser.email,
 			photoURL: auth.currentUser.photoURL,
@@ -98,13 +98,22 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 							{messages.map(({ id, data }) =>
 								data.email === auth.currentUser.email ? (
 									<View key={id} style={styles.reciever}>
-										<Avatar />
-										<Text style={styles.receiverText}>{data.message}</Text>
+										<Avatar
+											rounded
+											size={25}
+											position='absolute'
+											bottom={-15}
+											right={-5}
+											source={{
+												uri: data.photoURL,
+											}}
+										/>
+										<Text style={styles.recieverText}> {data.message} </Text>
 									</View>
 								) : (
 									<View key={id} style={styles.sender}>
-										<Text style={styles.senderText}>{data.message}</Text>
-										<Text style={styles.senderText}>{data.displayName}</Text>
+										<Text style={styles.senderText}> {data.message} </Text>
+										<Text style={styles.senderText}> {data.displayName} </Text>
 									</View>
 								)
 							)}
@@ -114,7 +123,7 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 								value={input}
 								onChangeText={(text) => setInput(text)}
 								onSubmitEditing={sendMessage}
-								placeholder='Message'
+								placeholder='Enter Message'
 								style={styles.textInput}
 							/>
 							<TouchableOpacity onPress={sendMessage}>
@@ -164,5 +173,15 @@ const styles = StyleSheet.create({
 		margin: 15,
 		maxWidth: '80%',
 		position: 'relative',
+	},
+	recieverText: {
+		fontWeight: '500',
+		marginLeft: 10,
+	},
+	senderText: {
+		paddingLeft: 10,
+		fontWeight: '500',
+
+		marginBottom: 15,
 	},
 });

@@ -40,7 +40,7 @@ export const CustomListItem: React.FC<Custom> = ({
 			<ListItem.Content>
 				<ListItem.Title style={{ fontWeight: 'bold' }}>{chatName}</ListItem.Title>
 				<ListItem.Subtitle numberOfLines={1} ellipsizeMode={'tail'}>
-					{chatMessages?.[0]?.dislayName}: {chatMessages?.[0]?.message}
+					{chatMessages?.[0]?.dislayName}// {chatMessages?.[0]?.message}
 				</ListItem.Subtitle>
 			</ListItem.Content>
 		</ListItem>

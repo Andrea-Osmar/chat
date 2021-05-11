@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { CustomListItem } from '../components/CustomListItem';
 import { Avatar } from 'react-native-elements';
+import { StatusBar } from 'expo-status-bar';
+
 import { auth, db } from '../../firebase';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
@@ -49,7 +51,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 			headerTintColor: '#000',
 
 			headerLeft: () => (
-				<View style={{ margin: 20 }}>
+				<View style={{ marginLeft: 20, marginBottom: 10, marginTop: 10 }}>
 					<TouchableOpacity onPress={signOutUser}>
 						<Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
 						<Text>{auth.currentUser?.displayName}</Text>
@@ -79,6 +81,8 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 
 	return (
 		<SafeAreaView>
+			<StatusBar style='dark' />
+
 			<ScrollView style={styles.container}>
 				{chats.map(({ id, data: { chatName } }) => (
 					<CustomListItem

@@ -1,7 +1,18 @@
-import React, { useLayoutEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useLayoutEffect, useState } from 'react';
+import {
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity,
+	SafeAreaView,
+	KeyboardAvoidingView,
+	Platform,
+	TextInput,
+} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { Avatar } from 'react-native-elements';
 import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface Chat {
 	navigation: any;
@@ -9,6 +20,8 @@ interface Chat {
 }
 
 export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
+	const [input, setInput] = useState('');
+
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			title: 'Chat',
@@ -37,11 +50,39 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 		});
 	}, [navigation]);
 
+	const sendMessage = () => {};
+
 	return (
-		<View>
-			<Text>{route.params.chatName}</Text>
-		</View>
+		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+			<StatusBar style='light' />
+			<KeyboardAvoidingView
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				style={styles.container}
+				keyboardVerticalOffset={90}>
+				<>
+					<ScrollView>{/*Chat here*/}</ScrollView>
+					<View style={styles.footer}>
+						<TextInput
+							value={input}
+							onChangeText={(text) => setInput(text)}
+							placeholder='Message'
+							style={styles.textInput}
+						/>
+
+						<TouchableOpacity onPress={sendMessage}>
+							<Ionicons name='send' size={24} color='#2c6bed' />
+						</TouchableOpacity>
+					</View>
+				</>
+			</KeyboardAvoidingView>
+		</SafeAreaView>
 	);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {},
+	footer: {},
+	textInput: {},
+});
+
+/*<Text>{route.params.chatName}</Text>*/

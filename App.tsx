@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { LoginScreen } from './src/screens/LoginScreen';
 import { RegisterScreen } from './src/screens/RegisterScreen';
-import { AddChat } from './src/screens/AddChat';
+import { AddChatScreen } from './src/screens/AddChatScreen';
 const globalScreenOptions = {
 	// global styling for all screens
 	headerStyle: { backgroundColor: '#4243d3' },
@@ -22,18 +22,10 @@ export default function App() {
 			<Stack.Navigator
 				initialRouteName='Home' // Forcing to Homescreen
 				screenOptions={globalScreenOptions}>
-				<Stack.Screen
-					options={{ title: 'Waves Chat ' }}
-					name='Login'
-					component={LoginScreen}
-				/>
-				<Stack.Screen
-					options={{ title: 'Register for Waves' }}
-					name='Register'
-					component={RegisterScreen}
-				/>
+				<Stack.Screen name='Login' component={LoginScreen} />
+				<Stack.Screen name='Register' component={RegisterScreen} />
 				<Stack.Screen name='Home' component={HomeScreen} />
-				<Stack.Screen name='AddChat' component={AddChat} />
+				<Stack.Screen name='AddChat' component={AddChatScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

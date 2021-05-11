@@ -5,16 +5,11 @@ import { ListItem, Avatar } from 'react-native-elements';
 interface Custom {
 	id: any;
 	chatName: any;
-	enterChat: any;
 }
 
-export const CustomListItem: React.FC<Custom> = ({
-	id,
-	chatName,
-	enterChat,
-}) => {
+export const CustomListItem: React.FC<Custom> = ({ id, chatName }) => {
 	return (
-		<ListItem>
+		<ListItem key={id} bottomDivider>
 			<Avatar
 				rounded
 				source={{
@@ -22,7 +17,7 @@ export const CustomListItem: React.FC<Custom> = ({
 				}}
 			/>
 			<ListItem.Content>
-				<ListItem.Title style={{ fontWeight: 'bold' }}>Wave Chat</ListItem.Title>
+				<ListItem.Title style={{ fontWeight: 'bold' }}>{chatName}</ListItem.Title>
 				<ListItem.Subtitle numberOfLines={1} ellipsizeMode={'tail'}>
 					Subtitle Text
 				</ListItem.Subtitle>

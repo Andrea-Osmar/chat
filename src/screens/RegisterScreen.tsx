@@ -17,6 +17,7 @@ export const RegisterScreen: React.FC<Register> = ({ navigation }) => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerBackTitle: 'Back',
+			title: 'Register for Waves',
 		});
 	}, [navigation]);
 

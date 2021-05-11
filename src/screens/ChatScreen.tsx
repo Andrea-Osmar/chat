@@ -38,9 +38,12 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 					<Avatar
 						rounded
 						source={{
-							uri: 'https://clinicforspecialchildren.org/wp-content/uploads/2016/08/avatar-placeholder.gif',
+							uri:
+								messages[0]?.data.photoURL ||
+								'https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png',
 						}}
 					/>
+
 					<Text style={{ color: '#fff', marginLeft: 10, fontWeight: '700' }}>
 						{route.params.chatName}
 					</Text>
@@ -73,7 +76,7 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 			.collection('chats')
 			.doc(route.params.id)
 			.collection('messages')
-			.orderBy('timestamp', 'asc')
+			.orderBy('timestamp', 'desc')
 			.onSnapshot((snapshot) =>
 				setMessages(
 					snapshot.docs.map((doc) => ({
@@ -131,7 +134,7 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 											}}
 										/>
 										<Text style={styles.senderText}> {data.message} </Text>
-										<Text style={styles.senderText}> {data.displayName} </Text>
+										<Text style={styles.senderText}>/{data.displayName} </Text>
 									</View>
 								)
 							)}

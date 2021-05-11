@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
@@ -13,6 +13,12 @@ export const RegisterScreen: React.FC<Register> = ({ navigation }) => {
 	const [password, setPassword] = useState('');
 	const [displayName, setDisplayName] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerBackTitle: 'Back',
+		});
+	}, [navigation]);
 
 	const register = () => {};
 

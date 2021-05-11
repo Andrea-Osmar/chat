@@ -19,7 +19,7 @@ export const LoginScreen: React.FC<Login> = ({ navigation }) => {
 				<StatusBar style='light' />
 				<Image
 					source={{
-						uri: 'https://www.pikpng.com/pngl/m/6-64249_banner-free-stock-ocean-waves-clipart-transparent-background.png',
+						uri: 'https://cdn.pixabay.com/photo/2017/10/06/10/36/graphic-2822614_960_720.png',
 					}}
 					style={{ width: 200, height: 200, marginBottom: 20 }}
 				/>

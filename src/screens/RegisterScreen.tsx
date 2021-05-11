@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
-
+import { auth } from '../../firebase';
 interface Register {
 	navigation: any;
 }
@@ -20,7 +20,19 @@ export const RegisterScreen: React.FC<Register> = ({ navigation }) => {
 		});
 	}, [navigation]);
 
-	const register = () => {};
+	const register = () => {
+		auth
+			.createUserWtithEmaiAndPassword(email, password)
+			.then((authUser) => {
+				authUser.user.updateProfile({
+					displayName: displayName,
+					photoURL:
+						imageUrl ||
+						'https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png',
+				});
+			})
+			.catch((error) => alert(error.messge));
+	};
 
 	return (
 		<KeyboardAvoidingView behavior='padding' style={styles.container}>

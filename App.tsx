@@ -21,7 +21,7 @@ export default function App() {
 		<NavigationContainer>
 			<Stack.Navigator screenOptions={globalScreenOptions}>
 				<Stack.Screen
-					options={{ title: 'Sign Up here' }}
+					options={{ title: 'Sign Up for Waves Chat ' }}
 					name='Login'
 					component={LoginScreen}
 				/>

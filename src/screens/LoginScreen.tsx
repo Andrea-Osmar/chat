@@ -3,7 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 
-export const LoginScreen = () => {
+interface Login {
+	navigation: any;
+}
+
+export const LoginScreen: React.FC<Login> = ({ navigation }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -15,7 +19,7 @@ export const LoginScreen = () => {
 				<StatusBar style='light' />
 				<Image
 					source={{
-						uri: 'https://lh3.googleusercontent.com/proxy/-mslS4u40Li4X1WiWhPnTTnW8oyCvJE6HKVKZSB6EZwULkniDmUaKKFMYNiBjXNzeGGeeDs1Te34cu0vtLMa9npbvR0fh1wNS6b5Ibdqs0PTR5u4Pw',
+						uri: 'https://cdn.pixabay.com/photo/2017/10/06/10/36/graphic-2822614_960_720.png',
 					}}
 					style={{ width: 200, height: 200, marginBottom: 20 }}
 				/>
@@ -36,7 +40,12 @@ export const LoginScreen = () => {
 					/>
 				</View>
 				<Button containerStyle={styles.button} onPress={signIn} title='Login' />
-				<Button containerStyle={styles.button} type='outline' title='Register' />
+				<Button
+					containerStyle={styles.button}
+					onPress={() => navigation.navigate('Register')}
+					type='outline'
+					title='Register'
+				/>
 			</KeyboardAvoidingView>
 		</>
 	);
@@ -48,6 +57,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		padding: 10,
+		backgroundColor: '#fff',
 	},
 	inputContainer: { width: 300 },
 	button: { width: 200, marginTop: 10 },

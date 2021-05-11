@@ -10,6 +10,7 @@ import {
 import { CustomListItem } from '../components/CustomListItem';
 import { Avatar } from 'react-native-elements';
 import { auth, db } from '../../firebase';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 interface Home {
 	navigation: any;
@@ -30,15 +31,26 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 			headerTintColor: '#000',
 
 			headerLeft: () => (
-				<View style={{ margin: 20, marginBottom: 20 }}>
+				<View style={{ margin: 20 }}>
 					<TouchableOpacity onPress={signOutUser}>
 						<Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
 						<Text>{auth.currentUser?.displayName}</Text>
 					</TouchableOpacity>
 				</View>
 			),
+
+			headerRight: () => (
+				<View
+					style={{
+						marginRight: 20,
+					}}>
+					<TouchableOpacity onPress={() => navigation.navigate('AddChat')}>
+						<SimpleLineIcons name='speech' size={24} color='black' />
+					</TouchableOpacity>
+				</View>
+			),
 		});
-	}, []);
+	}, [navigation]);
 
 	return (
 		<SafeAreaView>

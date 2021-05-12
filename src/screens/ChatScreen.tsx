@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
 	},
 	sender: {
 		padding: 15,
-		backgroundColor: '#2b68e6',
+		backgroundColor: '#6b9bff',
 		alignSelf: 'flex-start',
 		borderRadius: 20,
 		margin: 15,

@@ -7,12 +7,12 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from 'react-native';
-import { CustomListItem } from '../components/CustomListItem';
 import { Avatar } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
-
-import { auth, db } from '../../firebase';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { auth, db } from '../../firebase';
+import { CustomListItem } from '../components/CustomListItem';
+import { ListAllUsers } from '../components/ListAllUsers';
 
 interface Home {
 	navigation: any;
@@ -92,6 +92,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 						enterChat={enterChat}
 					/>
 				))}
+				<ListAllUsers />
 			</ScrollView>
 		</SafeAreaView>
 	);

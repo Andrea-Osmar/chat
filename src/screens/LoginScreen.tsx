@@ -3,9 +3,9 @@ import { StatusBar } from 'expo-status-bar';
 import { KeyboardAvoidingView, StyleSheet, View, Keyboard } from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 import { auth } from '../../firebase';
-import { LogBox } from 'react-native'; // working?
+//import { LogBox } from 'react-native'; // working?
+//LogBox.ignoreLogs(['Setting a timer']); // working?
 
-LogBox.ignoreLogs(['Setting a timer']); // working?
 interface Login {
 	navigation: any;
 }

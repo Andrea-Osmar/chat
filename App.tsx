@@ -12,7 +12,7 @@ import { AddChatScreen } from './src/screens/AddChatScreen';
 import { ChatScreen } from './src/screens/ChatScreen';
 const globalScreenOptions = {
 	// global styling for all screens
-	headerStyle: { backgroundColor: '#4243d3' },
+	headerStyle: { backgroundColor: '#6874f9' },
 	headerTitleStyle: { color: '#fff' },
 };
 const Stack = createStackNavigator();
@@ -21,9 +21,13 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator
-				initialRouteName='Home' // Forcing to Homescreen
+				//initialRouteName='Home' // Forcing to Homescreen
 				screenOptions={globalScreenOptions}>
-				<Stack.Screen name='Login' component={LoginScreen} />
+				<Stack.Screen
+					name='Login'
+					component={LoginScreen}
+					options={{ title: 'Sign in to Wave' }}
+				/>
 				<Stack.Screen name='Register' component={RegisterScreen} />
 				<Stack.Screen name='Home' component={HomeScreen} />
 				<Stack.Screen name='AddChat' component={AddChatScreen} />

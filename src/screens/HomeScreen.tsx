@@ -11,27 +11,37 @@ import { Avatar } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
+
 import { CustomListItem } from '../components/CustomListItem';
 import { ListAllUsers } from '../components/ListAllUsers';
+import firebase from 'firebase/app';
 
 interface Home {
 	navigation: any;
-}
-interface enterChat {
-	id: any;
-	chatName: any;
 }
 
 export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 	const [chats, setChats] = useState([]);
 
+	// Create user collection in firebase
+	const UserOnline = (bool: Boolean) => {
+		db.collection('users').doc(auth.currentUser?.uid).set({
+			name: auth.currentUser?.displayName,
+			lastOnline: firebase.firestore.FieldValue.serverTimestamp(),
+			online: bool,
+		});
+	};
+
 	const signOutUser = () => {
+		UserOnline(false);
+
 		auth.signOut().then(() => {
 			navigation.replace('Login');
 		});
 	};
 
 	useEffect(() => {
+		UserOnline(true);
 		const unsubscribe = db.collection('chats').onSnapshot((snapshot) =>
 			setChats(
 				snapshot.docs.map((doc) => ({
@@ -40,12 +50,13 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 				}))
 			)
 		);
+
 		return unsubscribe;
 	}, []);
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
-			title: 'Wave Chat',
+			title: 'Waves Chat',
 			headerStyle: { backgroundColor: '#fff' },
 			headerTitleStyle: { color: '#000' },
 			headerTintColor: '#000',
@@ -72,7 +83,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 		});
 	}, [navigation]);
 
-	const enterChat: React.FC<enterChat> = (id, chatName) => {
+	const enterChat = (id: any, chatName: any) => {
 		navigation.navigate('Chat', {
 			id,
 			chatName,
@@ -82,7 +93,6 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 	return (
 		<SafeAreaView>
 			<StatusBar style='dark' />
-
 			<ScrollView style={styles.container}>
 				{chats.map(({ id, data: { chatName } }) => (
 					<CustomListItem

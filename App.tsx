@@ -10,6 +10,7 @@ import { LoginScreen } from './src/screens/LoginScreen';
 import { RegisterScreen } from './src/screens/RegisterScreen';
 import { AddChatScreen } from './src/screens/AddChatScreen';
 import { ChatScreen } from './src/screens/ChatScreen';
+
 const globalScreenOptions = {
 	// global styling for all screens
 	headerStyle: { backgroundColor: '#6874f9' },
@@ -26,7 +27,7 @@ export default function App() {
 				<Stack.Screen
 					name='Login'
 					component={LoginScreen}
-					options={{ title: 'Sign in to Wave' }}
+					options={{ title: 'Sign in to Waves' }}
 				/>
 				<Stack.Screen name='Register' component={RegisterScreen} />
 				<Stack.Screen name='Home' component={HomeScreen} />

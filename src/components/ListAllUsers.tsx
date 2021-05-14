@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { auth, db } from '../../firebase';
+import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
 
 export const ListAllUsers = () => {
 	const [userData, setUserData] = useState([]);
@@ -25,10 +26,11 @@ export const ListAllUsers = () => {
 				{userData.map(({ id, data }) => (
 					<View key={id}>
 						<Text>{data.name}</Text>
-						<Text>{
-							if (data.online)
-							
-						(data.online)} </Text>
+						{data.online === true ? (
+							<Ionicons name='ellipse-outline' size={24} color='green' />
+						) : (
+							<Ionicons name='ellipse-outline' size={24} color='red' />
+						)}
 					</View>
 				))}
 			</View>

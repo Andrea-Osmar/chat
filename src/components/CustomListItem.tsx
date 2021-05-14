@@ -25,8 +25,10 @@ export const CustomListItem: React.FC<Custom> = ({
 			.onSnapshot((snapshot) =>
 				setChatMessages(snapshot.docs.map((doc) => doc.data()))
 			);
+		console.log('chat id', chatName);
 		return unsubscribe;
 	}, []);
+
 	return (
 		<ListItem key={id} onPress={() => enterChat(id, chatName)} bottomDivider>
 			<Avatar

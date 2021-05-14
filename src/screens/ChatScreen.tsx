@@ -60,7 +60,7 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 
 	const sendMessage = () => {
 		Keyboard.dismiss();
-
+		// Create chat collection in Firebase
 		db.collection('chats').doc(route.params.id).collection('messages').add({
 			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 			message: input,
@@ -202,7 +202,6 @@ const styles = StyleSheet.create({
 	senderText: {
 		paddingLeft: 10,
 		fontWeight: '500',
-
 		marginBottom: 15,
 	},
 });

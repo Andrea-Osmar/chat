@@ -112,7 +112,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-	container: { height: '100%', backgroundColor: '#fff' },
+	container: { height: '100%', backgroundColor: '#f2f2f2' },
 	headerLeft: { marginLeft: 20, marginBottom: 10, marginTop: 10 },
 	headerRight: {
 		marginRight: 20,

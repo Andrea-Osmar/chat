@@ -41,6 +41,7 @@ export const ListAllUsers = () => {
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: '#f2f2f2',
 		height: '100%',
 		minWidth: '100%',
 		flex: 1,

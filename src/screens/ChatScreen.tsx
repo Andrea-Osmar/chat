@@ -34,7 +34,7 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 			headerBackTitleVisible: false, // remove?
 
 			headerTitle: () => (
-				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+				<View style={styles.header}>
 					<Avatar
 						rounded
 						source={{
@@ -44,14 +44,12 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 						}}
 					/>
 
-					<Text style={{ color: '#fff', marginLeft: 10, fontWeight: '700' }}>
-						{route.params.chatName}
-					</Text>
+					<Text style={styles.headerTitle}>{route.params.chatName}</Text>
 				</View>
 			),
 
 			headerLeft: () => (
-				<TouchableOpacity style={{ marginLeft: 10 }} onPress={navigation.goBack}>
+				<TouchableOpacity style={styles.backButton} onPress={navigation.goBack}>
 					<AntDesign name='arrowleft' size={24} color='#fff' />
 				</TouchableOpacity>
 			),
@@ -89,7 +87,7 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 	}, [route]);
 
 	return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+		<SafeAreaView style={styles.areaContainer}>
 			<StatusBar style='light' />
 			<KeyboardAvoidingView
 				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -160,6 +158,10 @@ export const ChatScreen: React.FC<Chat> = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
 	container: { flex: 1 },
+	areaContainer: { flex: 1, backgroundColor: '#fff' },
+	header: { flexDirection: 'row', alignItems: 'center' },
+	headerTitle: { color: '#fff', marginLeft: 10, fontWeight: '700' },
+	backButton: { marginLeft: 10 },
 	footer: {
 		flexDirection: 'row',
 		alignItems: 'center',

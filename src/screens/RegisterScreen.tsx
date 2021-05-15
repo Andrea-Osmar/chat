@@ -18,6 +18,7 @@ export const RegisterScreen: React.FC<Register> = ({ navigation }) => {
 		navigation.setOptions({
 			headerBackTitle: 'Back',
 			title: 'Register for Waves',
+			headerTintColor: '#fff',
 		});
 	}, [navigation]);
 
@@ -38,9 +39,7 @@ export const RegisterScreen: React.FC<Register> = ({ navigation }) => {
 	return (
 		<KeyboardAvoidingView behavior='padding' style={styles.container}>
 			<StatusBar style='light' />
-			{/* <Text style={{ marginBottom: 50, fontSize: 20 }}>
-				Create a Wave Chat account
-			</Text> */}
+
 			<View style={styles.inputContainer}>
 				<Input
 					type='text'

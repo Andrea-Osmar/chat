@@ -57,24 +57,20 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			title: 'Waves Chat',
-			//headerStyle: { backgroundColor: 'green' },
 			headerTitleStyle: { color: '#fff' },
 			headerTintColor: '#fff',
 
 			headerLeft: () => (
-				<View style={{ marginLeft: 20, marginBottom: 10, marginTop: 10 }}>
+				<View style={styles.headerLeft}>
 					<TouchableOpacity onPress={signOutUser}>
 						<Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
-						<Text style={{ color: '#fff' }}>{auth.currentUser?.displayName}</Text>
+						<Text style={styles.text}>{auth.currentUser?.displayName}</Text>
 					</TouchableOpacity>
 				</View>
 			),
 
 			headerRight: () => (
-				<View
-					style={{
-						marginRight: 20,
-					}}>
+				<View style={styles.headerRight}>
 					<TouchableOpacity onPress={() => navigation.navigate('AddChat')}>
 						<SimpleLineIcons name='speech' size={24} color='#fff' />
 					</TouchableOpacity>
@@ -95,10 +91,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 			<StatusBar style='dark' />
 			<ScrollView style={styles.container}>
 				<ListItem bottomDivider>
-					<ListItem.Title
-						h5
-						style={{ fontWeight: 'bold', marginBottom: 10, fontSize: 20 }}>
-						{' '}
+					<ListItem.Title h5 style={styles.title}>
 						Chat Rooms
 					</ListItem.Title>
 				</ListItem>
@@ -120,4 +113,10 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	container: { height: '100%', backgroundColor: '#fff' },
+	headerLeft: { marginLeft: 20, marginBottom: 10, marginTop: 10 },
+	headerRight: {
+		marginRight: 20,
+	},
+	text: { color: '#fff' },
+	title: { fontWeight: 'bold', marginBottom: 10, fontSize: 20 },
 });

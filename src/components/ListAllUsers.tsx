@@ -26,20 +26,17 @@ export const ListAllUsers = () => {
 	return (
 		<>
 			<ListItem bottomDivider containerStyle={styles.container}>
-				<ListItem.Title
-					h5
-					style={{ fontWeight: 'bold', marginBottom: 10, fontSize: 20 }}>
-					{' '}
+				<ListItem.Title h5 style={styles.title}>
 					User Status
 				</ListItem.Title>
 			</ListItem>
 			<ListItem bottomDivider containerStyle={styles.container}>
 				{userData.map(({ id, data }) => (
 					<ListItem.Title style={styles.users} key={id}>
-						<ListItem.Title style={{ marginRight: 20, fontSize: 15 }}>
+						<ListItem.Title style={styles.status}>
 							{data.online === true ? <Text>🟢</Text> : <Text>🔴</Text>}
 						</ListItem.Title>
-						<Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
+						<Text style={styles.text}>{data.name}</Text>
 					</ListItem.Title>
 				))}
 			</ListItem>
@@ -54,43 +51,18 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'flex-start',
 		flexDirection: 'column',
-		//flexWrap: 'wrap',
 	},
-
+	title: {
+		fontWeight: 'bold',
+		marginBottom: 10,
+		fontSize: 20,
+	},
+	text: { fontWeight: 'bold' },
+	status: {
+		marginRight: 20,
+		fontSize: 15,
+	},
 	users: {
 		marginBottom: 10,
 	},
 });
-
-/*
-
-return (
-		<View style={styles.container}>
-			<View>Users </View>
-			<ListItem>
-				{userData.map(({ id, data }) => (
-					<View key={id} style={styles.userList} bottomDivider>
-						<Text style={{ marginRight: 10, fontWeight: 'bold' }}>{data.name}</Text>
-						{data.online === true ? <Text>🟢</Text> : <Text>🔴</Text>}
-					</View>
-				))}
-			</ListItem>
-		</View>
-	);
-};
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#a6d6d6',
-		flex: 1,
-		marginTop: 20,
-	},
-	userList: {
-		marginLeft: 10,
-		flex: 1,
-		flexDirection: 'column',
-	},
-});
-
-
-*/

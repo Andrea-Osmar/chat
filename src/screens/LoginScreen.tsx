@@ -41,7 +41,7 @@ export const LoginScreen: React.FC<Login> = ({ navigation }) => {
 					source={{
 						uri: 'https://cdn.pixabay.com/photo/2017/10/06/10/36/graphic-2822614_960_720.png',
 					}}
-					style={{ width: 200, height: 200, marginBottom: 20 }}
+					style={styles.image}
 				/>
 				<View style={styles.inputContainer}>
 					<Input
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		backgroundColor: '#fff',
 	},
+	image: { width: 200, height: 200, marginBottom: 20 },
 	inputContainer: { width: 300 },
 	button: { width: 200, marginTop: 10 },
 });

@@ -15,6 +15,7 @@ export const AddChatScreen: React.FC<AddChat> = ({ navigation }) => {
 		navigation.setOptions({
 			title: 'Add a new Chat',
 			headerBackTitle: 'Chats', // working?
+			headerTintColor: '#fff',
 		});
 	}, [navigation]);
 
@@ -39,7 +40,7 @@ export const AddChatScreen: React.FC<AddChat> = ({ navigation }) => {
 				onSubmitEditing={createChat}
 				leftIcon={<Icon name='wechat' type='antdesign' size={24} color='#000' />}
 			/>
-			<Button disabled={!input} onPress={createChat} title='Create new Chat' />
+			<Button disabled={!input} onPress={createChat} title='Create a new Chat' />
 		</View>
 	);
 };

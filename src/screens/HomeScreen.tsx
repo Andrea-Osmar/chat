@@ -7,10 +7,10 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from 'react-native';
-import { Avatar } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { auth, db } from '../../firebase';
+import { ListItem, Avatar } from 'react-native-elements';
 
 import { CustomListItem } from '../components/CustomListItem';
 import { ListAllUsers } from '../components/ListAllUsers';
@@ -57,15 +57,15 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			title: 'Waves Chat',
-			headerStyle: { backgroundColor: '#fff' },
-			headerTitleStyle: { color: '#000' },
-			headerTintColor: '#000',
+			//headerStyle: { backgroundColor: 'green' },
+			headerTitleStyle: { color: '#fff' },
+			headerTintColor: '#fff',
 
 			headerLeft: () => (
 				<View style={{ marginLeft: 20, marginBottom: 10, marginTop: 10 }}>
 					<TouchableOpacity onPress={signOutUser}>
 						<Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
-						<Text>{auth.currentUser?.displayName}</Text>
+						<Text style={{ color: '#fff' }}>{auth.currentUser?.displayName}</Text>
 					</TouchableOpacity>
 				</View>
 			),
@@ -76,7 +76,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 						marginRight: 20,
 					}}>
 					<TouchableOpacity onPress={() => navigation.navigate('AddChat')}>
-						<SimpleLineIcons name='speech' size={24} color='black' />
+						<SimpleLineIcons name='speech' size={24} color='#fff' />
 					</TouchableOpacity>
 				</View>
 			),
@@ -94,6 +94,15 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 		<SafeAreaView>
 			<StatusBar style='dark' />
 			<ScrollView style={styles.container}>
+				<ListItem bottomDivider>
+					<ListItem.Title
+						h5
+						style={{ fontWeight: 'bold', marginBottom: 10, fontSize: 20 }}>
+						{' '}
+						Chat Rooms
+					</ListItem.Title>
+				</ListItem>
+
 				{chats.map(({ id, data: { chatName } }) => (
 					<CustomListItem
 						key={id}
@@ -102,6 +111,7 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 						enterChat={enterChat}
 					/>
 				))}
+
 				<ListAllUsers />
 			</ScrollView>
 		</SafeAreaView>
@@ -109,5 +119,5 @@ export const HomeScreen: React.FC<Home> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-	container: { height: '100%' },
+	container: { height: '100%', backgroundColor: '#fff' },
 });

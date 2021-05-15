@@ -1,11 +1,7 @@
-import firebase from 'firebase/app';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { auth, db } from '../../firebase';
-import { ListItem, Avatar } from 'react-native-elements';
-import { Divider } from 'react-native-elements';
-
-import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text } from 'react-native';
+import { db } from '../../firebase';
+import { ListItem } from 'react-native-elements';
 
 export const ListAllUsers = () => {
 	const [userData, setUserData] = useState([]);
@@ -18,11 +14,10 @@ export const ListAllUsers = () => {
 				}))
 			)
 		);
-		//console.log('userlist', userList);
+
 		return userList;
 	}, []);
 
-	console.log('userdata', userData);
 	return (
 		<>
 			<ListItem bottomDivider containerStyle={styles.container}>

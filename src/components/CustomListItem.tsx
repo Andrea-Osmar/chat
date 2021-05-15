@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import { db } from '../../firebase';
 
@@ -25,7 +25,6 @@ export const CustomListItem: React.FC<Custom> = ({
 			.onSnapshot((snapshot) =>
 				setChatMessages(snapshot.docs.map((doc) => doc.data()))
 			);
-		console.log('chat id', chatName);
 		return unsubscribe;
 	}, []);
 

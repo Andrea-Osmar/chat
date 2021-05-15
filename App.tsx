@@ -1,7 +1,6 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -12,7 +11,7 @@ import { AddChatScreen } from './src/screens/AddChatScreen';
 import { ChatScreen } from './src/screens/ChatScreen';
 
 const globalScreenOptions = {
-	// global styling for all screens
+	// Global styling for all screens
 	headerStyle: { backgroundColor: '#6874f9' },
 	headerTitleStyle: { color: '#fff' },
 };

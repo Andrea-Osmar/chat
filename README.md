@@ -6,8 +6,8 @@ users.
 
 # View it live
 
-[Web](https://chat-f7da7.web.app/)
-[Expo](https://expo.io/@andrea.osmar/projects/Chat)
+* [Web](https://chat-f7da7.web.app/)
+* [Expo](https://expo.io/@andrea.osmar/projects/Chat)
 
 # Tech
 
